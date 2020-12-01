@@ -8,7 +8,7 @@ fn main() {
     let config = match Config::new(&args) {
         Ok(config) => config,
         Err(err) => {
-            println!("Problem parsing arguments: {}", err);
+            eprintln!("Problem parsing arguments: {}", err);
             process::exit(1);
         }
     };
@@ -16,8 +16,8 @@ fn main() {
     println!("Searching for {}", config.query);
     println!("In file {}", config.filename);
 
-    if let Err(e) = minigrep::run(config) {
-        println!("Application error: {}", e);
+    if let Err(err) = minigrep::run(config) {
+        eprintln!("Application error: {}", err);
         process::exit(1);
     }
 }
